@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/02GEEK/mastering-flux/issues"
   },
-  "homepage": "https://github.com/02GEEK/mastering-flux#readme"
+  "homepage": "https://github.com/02GEEK/mastering-flux#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
