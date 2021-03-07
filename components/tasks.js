@@ -1,5 +1,6 @@
 import React from 'react';
 import Task from './task';
+import Button from './button';
 
 export default class Tasks extends React.Component {
     constructor(props){
@@ -7,7 +8,7 @@ export default class Tasks extends React.Component {
 
         this.state = {
             tasks: [
-                {_id:0, label: 'Hello World 4.0'},
+               {_id:0, label: 'Hello World 4.0'},
                 {_id:1, label: 'Hello World 4.1'},
                 {_id:2, label: 'Hello World 4.2'},
                 {_id:3, label: 'Hello World 4.3'}
@@ -22,6 +23,10 @@ export default class Tasks extends React.Component {
         for(const {_id, label, ...rest} of tasks) {
             chl.push(<Task key={_id}>{label}</Task>)
         }
-        return <div>{chl}</div>
+        return <div>
+            {chl}
+            <input name="add" type="text" />
+            <Button className="-secondary">Add Task</Button>
+            </div>;
     }
 }
