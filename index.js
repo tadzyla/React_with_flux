@@ -8,10 +8,12 @@ mongoose.connect('mongodb://localhost/to-do', (err) => {
 })
 app.set('view engine', 'ejs');
 
+app.use(express.static('deploy'));
+
 app.get("/", (req, res) => {
     res.render('blank', {
         title: 'Mastering Flux',
-        body: 'Hello World hahaha'
+        body: "<div id='root'></div>"
     });
 });
 

@@ -1,3 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import Tasks from './components/tasks';
 
-console.log("Hello app");
+ReactDOM.render(<Tasks />, document.getElementById('root'));
