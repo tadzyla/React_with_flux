@@ -1,19 +1,30 @@
 import React from 'react';
 import Task from './task';
 import Button from './button';
+import taskStore from '../flux/stores/tasks';
+import {addTask} from '../flux/actions/tasks'; 
 
 export default class Tasks extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
-            tasks: [
-               {_id:0, label: 'Hello World 4.0'},
-                {_id:1, label: 'Hello World 4.1'},
-                {_id:2, label: 'Hello World 4.2'},
-                {_id:3, label: 'Hello World 4.3'}
-            ]
+            tasks: taskStore.getTasks()
         }
+        this.addTask = this.addTask.bind(this);
+    }
+
+    componentDidMount(){
+        taskStore.on('change', () => {
+            this.setState({tasks: taskStore.getTasks()});
+        });
+    }
+
+    addTask(e) {
+        const tasks = this.state.tasks.slice(0),
+              input = this.input;
+        addTask({label:input.value, _id:tasks.length})
+
     }
     
     render() {
@@ -25,8 +36,8 @@ export default class Tasks extends React.Component {
         }
         return <div>
             {chl}
-            <input name="add" type="text" />
-            <Button className="-secondary">Add Task</Button>
+            <input name="add" ref={(a)=>{this.input = a}} type="text" />
+            <Button className="-secondary" onClick={this.addTask}>Add Task</Button>
             </div>;
     }
 }
